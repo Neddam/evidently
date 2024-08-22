@@ -1,15 +1,12 @@
-# syntax=docker/dockerfile:1
-
 FROM python:3.8-slim-buster
 
 WORKDIR /app
 
-COPY metrics_app/requirements.txt requirements.txt
-
-RUN pip3 install -r requirements.txt
-
+# Install dependencies
 RUN pip3 install evidently==0.2.8
 
-COPY metrics_app .
+# (Optional) Install any other dependencies you need
+# RUN pip3 install <other-dependencies>
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8085"]
+# Define the command to run the application
+CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=8085" ]
